@@ -966,14 +966,12 @@
   }
 
   .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.7s, transform 0.7s;
+    opacity: 1 !important;
+    transform: none !important;
   }
-
   .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   /* ── TICKER ── */
@@ -1006,20 +1004,126 @@
     to { transform: translateX(-50%); }
   }
 
-  /* responsive */
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; }
+    /* Nav */
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+
+    /* Hero */
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 100px; }
     .hero-right { display: none; }
-    .services-grid { grid-template-columns: 1fr; }
+    .hero-left { padding: 40px 24px 60px; }
+    .hero-eyebrow { font-size: 10px; margin-bottom: 20px; }
+
+    .hero-name-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .hero-photo-wrap {
+      width: 110px;
+      height: 130px;
+    }
+
+    .hero-name {
+      font-size: clamp(56px, 18vw, 96px) !important;
+    }
+
+    .hero-tagline {
+      font-size: 16px !important;
+      margin-top: 20px;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn-primary, .btn-ghost {
+      text-align: center;
+      padding: 16px 24px;
+      font-size: 12px;
+    }
+
+    /* Stats */
+    .stats-band {
+      flex-wrap: wrap;
+      gap: 0;
+      padding: 0;
+    }
+
+    .stat-item {
+      border-right: none;
+      border-bottom: 1px solid rgba(10,10,15,0.15);
+      min-width: 50%;
+      padding: 24px 20px;
+      justify-content: flex-start;
+    }
+
+    .stat-number { font-size: 36px; }
+    .stat-label { font-size: 10px; }
+
+    /* Ticker */
+    .ticker-item { font-size: 13px; }
+
+    /* Sections */
+    .section { padding: 64px 24px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 48px; }
+    .section-number { display: none; }
+    .section-title { font-size: clamp(44px, 12vw, 72px) !important; }
+
+    /* Services */
+    .services-grid { grid-template-columns: 1fr; gap: 2px; }
+    .service-card { padding: 36px 28px; }
+    .service-num { font-size: 52px; top: 24px; right: 24px; }
+
+    /* Projects */
+    .projects-inner { padding: 0 24px; }
     .projects-grid { grid-template-columns: 1fr; }
+    .project-card { padding: 40px 28px; }
     .project-card.featured { grid-column: 1; display: block; }
-    .process-steps { grid-template-columns: 1fr 1fr; }
-    .contact-section { grid-template-columns: 1fr; gap: 60px; }
-    nav { padding: 24px 30px; }
-    .section { padding: 80px 30px; }
-    footer { flex-direction: column; gap: 16px; text-align: center; }
-    .stats-band { flex-wrap: wrap; gap: 24px; padding: 30px; }
-    .stat-item { border-right: none; min-width: 40%; }
+    .project-visual { display: none; }
+    .project-metrics { flex-wrap: wrap; gap: 24px; }
+    .metric-val { font-size: 28px; }
+
+    /* Process */
+    .process-section { padding: 64px 24px; }
+    .process-steps { grid-template-columns: 1fr; gap: 2px; }
+    .process-step { padding: 36px 28px; }
+
+    /* Testimonial */
+    .testimonial-section { padding: 60px 24px; }
+    .testimonial-quote { font-size: 20px !important; }
+
+    /* Contact */
+    .contact-section {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 64px 24px;
+    }
+
+    .contact-subtext { font-size: 14px; margin-bottom: 32px; }
+    .channel { font-size: 13px; }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea { font-size: 16px; /* prevents iOS zoom */ }
+
+    .form-submit { width: 100%; text-align: center; }
+
+    /* Footer */
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-name { font-size: 15vw !important; }
+    .hero-photo-wrap { width: 90px; height: 110px; }
+    .stat-item { min-width: 100%; }
+    .service-card { padding: 28px 20px; }
+    .project-card { padding: 32px 20px; }
   }
 </style>
 </head>
@@ -1047,7 +1151,7 @@
       <div class="hero-photo-wrap" id="photoWrap">
         <input type="file" id="photoUploadInput" accept="image/*">
         <img src="https://i.imgur.com/qzaUUTr.jpeg" class="hero-photo" alt="Faith Elusogbon">
-        <div class="hero-photo-placeholder" id="photoPlaceholder" onclick="document.getElementById('photoUploadInput').click()">
+        <div class="hero-photo-placeholder" id="photoPlaceholder" onclick="document.getElementById('photoUploadInput').click()" style="display:none;">
           <span class="photo-upload-icon">+</span>
           <span>Click to add<br>your photo</span>
         </div>
@@ -1147,7 +1251,7 @@
           <span class="tool-tag">LLM APIs</span>
         </div>
       </div>
-      <div class="service-card reveal" style="transition-delay: 0.1s;">
+      <div class="service-card reveal">
         <div class="service-num">02</div>
         <div class="service-icon">
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1163,7 +1267,7 @@
           <span class="tool-tag">GHL</span>
         </div>
       </div>
-      <div class="service-card reveal" style="transition-delay: 0.2s;">
+      <div class="service-card reveal">
         <div class="service-num">03</div>
         <div class="service-icon">
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1179,7 +1283,7 @@
           <span class="tool-tag">APIs</span>
         </div>
       </div>
-      <div class="service-card reveal" style="transition-delay: 0.3s;">
+      <div class="service-card reveal">
         <div class="service-num">04</div>
         <div class="service-icon">
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1195,7 +1299,7 @@
           <span class="tool-tag">Notion</span>
         </div>
       </div>
-      <div class="service-card reveal" style="transition-delay: 0.4s;">
+      <div class="service-card reveal">
         <div class="service-num">05</div>
         <div class="service-icon">
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1210,7 +1314,7 @@
           <span class="tool-tag">n8n</span>
         </div>
       </div>
-      <div class="service-card reveal" style="transition-delay: 0.5s;">
+      <div class="service-card reveal">
         <div class="service-num">06</div>
         <div class="service-icon">
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1287,7 +1391,7 @@
           </div>
         </div>
       </div>
-      <div class="project-card reveal" style="transition-delay: 0.15s;">
+      <div class="project-card reveal">
         <p class="project-industry">Financial Services</p>
         <h3 class="project-title">Loan Approval Pipeline</h3>
         <p class="project-desc">Built a conditional logic workflow that routes loan applications through compliance checks, document verification, and approval stages with zero manual touchpoints for standard cases.</p>
@@ -1322,19 +1426,19 @@
       <h3 class="step-title">Discovery Call</h3>
       <p class="step-desc">We map your current operations, identify bottlenecks, and define the exact outcomes you need — no scope creep, no vague deliverables.</p>
     </div>
-    <div class="process-step reveal" style="transition-delay: 0.1s;">
+    <div class="process-step reveal">
       <span class="step-num">2</span>
       <div class="step-bar"></div>
       <h3 class="step-title">System Design</h3>
       <p class="step-desc">I architect the full workflow before a single node is built — data models, integration points, error handling, and scalability baked in from day one.</p>
     </div>
-    <div class="process-step reveal" style="transition-delay: 0.2s;">
+    <div class="process-step reveal">
       <span class="step-num">3</span>
       <div class="step-bar"></div>
       <h3 class="step-title">Build & Test</h3>
       <p class="step-desc">Rapid iteration with live testing against real data. Every edge case accounted for before handoff — no surprises at 2am.</p>
     </div>
-    <div class="process-step reveal" style="transition-delay: 0.3s;">
+    <div class="process-step reveal">
       <span class="step-num">4</span>
       <div class="step-bar"></div>
       <h3 class="step-title">Launch & Support</h3>
@@ -1371,7 +1475,7 @@
         </a>
       </div>
     </div>
-    <div class="contact-form reveal" style="transition-delay: 0.2s;">
+    <div class="contact-form reveal">
       <div class="form-group">
         <input type="text" placeholder="Your Name">
       </div>
@@ -1432,17 +1536,30 @@
     });
   });
 
-  // Scroll reveal
+  // Scroll reveal — mobile-safe
   const reveals = document.querySelectorAll('.reveal');
+  const isMobile = window.innerWidth <= 900;
+
+  // Remove stagger delays on mobile so cards don't get stuck hidden
+  if (isMobile) {
+    reveals.forEach(el => el.style.transitionDelay = '0s');
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: isMobile ? 0.01 : 0.1, rootMargin: '0px 0px -40px 0px' });
 
   reveals.forEach(el => observer.observe(el));
+
+  // Fallback: reveal everything after 1.5s in case observer misses anything
+  setTimeout(() => {
+    reveals.forEach(el => el.classList.add('visible'));
+  }, 1500);
 
   // Photo upload
   const photoInput = document.getElementById('photoUploadInput');
