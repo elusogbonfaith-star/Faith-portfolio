@@ -122,6 +122,8 @@
   }
 
   .hero-photo {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -129,23 +131,20 @@
     display: block;
     filter: grayscale(15%) contrast(1.05);
     transition: filter 0.4s;
+    z-index: 2;
   }
 
   .hero-photo-wrap:hover .hero-photo {
     filter: grayscale(0%) contrast(1);
   }
 
+  .hero-photo-wrap img + .hero-photo-placeholder,
   .hero-photo-placeholder {
-    width: 100%;
-    height: 100%;
-    background: var(--card);
-    border: 1px dashed rgba(201, 168, 76, 0.3);
+    display: none;
+  }
+
+  .hero-photo-wrap:not(:has(img)) .hero-photo-placeholder {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    cursor: pointer;
   }
 
   .hero-photo-placeholder span {
@@ -1362,9 +1361,9 @@
           <div class="channel-icon">🔗</div>
           Hire on Upwork — Faith E.
         </a>
-        <a href="mailto:hello@faithe.dev" class="channel">
+        <a href="/cdn-cgi/l/email-protection#b1d9d4dddddef1d7d0d8c5d9d49fd5d4c7" class="channel">
           <div class="channel-icon">✉️</div>
-          hello@faithe.dev
+          <span class="__cf_email__" data-cfemail="9af2fff6f6f5dafcfbf3eef2ffb4feffec">[email&#160;protected]</span>
         </a>
         <a href="#" class="channel">
           <div class="channel-icon">▶</div>
@@ -1404,7 +1403,7 @@
   <div class="footer-copy">© 2025 Faith Elusogbon. All workflows reserved.</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -1456,14 +1455,4 @@
     const reader = new FileReader();
     reader.onload = (ev) => {
       photoPlaceholder.style.display = 'none';
-      const img = document.createElement('img');
-      img.src = ev.target.result;
-      img.className = 'hero-photo';
-      img.alt = 'Faith Elusogbon';
-      photoWrap.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-  });
-</script>
-</body>
-</html>
+      const img = docu
