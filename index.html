@@ -328,10 +328,6 @@
     to { transform: rotate(360deg); }
   }
 
-  @media (max-width: 900px) {
-    .hero-scroll { display: none; }
-  }
-
   .hero-scroll {
     position: absolute;
     bottom: 40px;
@@ -814,11 +810,13 @@
   }
 
   .testimonial-slide {
-    display: none;
-    animation: fadeSlide 0.6s ease;
+    display: none !important;
   }
 
-  .testimonial-slide.active { display: block; }
+  .testimonial-slide.active {
+    display: block !important;
+    animation: fadeSlide 0.6s ease;
+  }
 
   @keyframes fadeSlide {
     from { opacity: 0; transform: translateY(12px); }
@@ -1085,6 +1083,7 @@
     /* Nav */
     nav { padding: 20px 24px; }
     .nav-links { display: none; }
+    .hero-scroll { display: none !important; }
 
     /* Hero */
     .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 100px; }
@@ -1546,9 +1545,9 @@
   <div class="testimonial-nav">
     <button class="t-btn" id="tPrev">&#8592;</button>
     <div class="t-dots">
-      <div class="t-dot active" onclick="goToSlide(0)"></div>
-      <div class="t-dot" onclick="goToSlide(1)"></div>
-      <div class="t-dot" onclick="goToSlide(2)"></div>
+      <div class="t-dot active" data-index="0"></div>
+      <div class="t-dot" data-index="1"></div>
+      <div class="t-dot" data-index="2"></div>
     </div>
     <button class="t-btn" id="tNext">&#8594;</button>
   </div>
@@ -1664,10 +1663,10 @@
 
   // Testimonial Slideshow
   (function() {
-    let current = 0;
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.t-dot');
-    const total = slides.length;
+    var current = 0;
+    var slides = document.querySelectorAll('.testimonial-slide');
+    var dots = document.querySelectorAll('.t-dot');
+    var total = slides.length;
 
     if (!total) return;
 
@@ -1679,14 +1678,15 @@
       dots[current].classList.add('active');
     }
 
-    document.getElementById('tPrev').onclick = function() { goTo(current - 1); };
-    document.getElementById('tNext').onclick = function() { goTo(current + 1); };
+    document.getElementById('tPrev').addEventListener('click', function() { goTo(current - 1); });
+    document.getElementById('tNext').addEventListener('click', function() { goTo(current + 1); });
 
-    dots.forEach(function(dot, i) {
-      dot.onclick = function() { goTo(i); };
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        goTo(parseInt(this.getAttribute('data-index')));
+      });
     });
 
-    // Auto-advance every 5 seconds
     setInterval(function() { goTo(current + 1); }, 5000);
   })();
 
