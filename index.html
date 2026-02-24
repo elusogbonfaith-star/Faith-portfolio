@@ -79,8 +79,8 @@
   .hero-left {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 80px 60px;
+    justify-content: center;
+    padding: 100px 60px 60px;
     position: relative;
     z-index: 2;
   }
@@ -96,8 +96,7 @@
     width: 140px;
     height: 170px;
     position: relative;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.5s forwards;
+    opacity: 1;
     margin-bottom: 6px;
   }
 
@@ -167,8 +166,7 @@
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
+    opacity: 1;
   }
 
   .hero-name {
@@ -176,8 +174,7 @@
     font-size: clamp(72px, 9vw, 140px);
     line-height: 0.9;
     color: var(--cream);
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
+    opacity: 1;
     letter-spacing: 0.02em;
   }
 
@@ -196,16 +193,14 @@
     margin-top: 28px;
     max-width: 420px;
     line-height: 1.5;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
+    opacity: 1;
   }
 
   .hero-ctas {
     display: flex;
     gap: 16px;
     margin-top: 48px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
+    opacity: 1;
   }
 
   .btn-primary {
@@ -337,8 +332,7 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    opacity: 0;
-    animation: fadeUp 1s 1.2s forwards;
+    opacity: 1;
   }
 
   .hero-scroll span {
@@ -372,17 +366,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 60px;
-    mix-blend-mode: normal;
+    padding: 18px 60px;
+    background: rgba(10,10,15,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
   }
 
-  nav::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(var(--ink), transparent);
-    pointer-events: none;
-  }
+
 
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
@@ -809,14 +799,7 @@
     margin: 0 auto;
   }
 
-  .testimonial-slide {
-    display: none !important;
-  }
-
-  .testimonial-slide.active {
-    display: block !important;
-    animation: fadeSlide 0.6s ease;
-  }
+  .testimonial-slide { display: none; }
 
   @keyframes fadeSlide {
     from { opacity: 0; transform: translateY(12px); }
@@ -1525,29 +1508,41 @@
 
 <!-- TESTIMONIAL -->
 <div class="testimonial-section">
-  <div class="testimonial-slider">
-    <div class="testimonial-slide active">
+  <div class="testimonial-slider" id="tSlider">
+    <div class="testimonial-slide" id="slide-0">
       <p class="testimonial-quote">"Faith didn't just build us a CRM — he built us a growth engine. Our lead response time went from two days to under two minutes. Worth every penny."</p>
       <p class="testimonial-author">Real Estate Client</p>
       <p class="testimonial-role">Property Management, Australia</p>
     </div>
-    <div class="testimonial-slide">
-      <p class="testimonial-quote">"The automation system Faith built saved our team 20+ hours a week. Everything runs on its own now — leads come in, get qualified, and land in the right pipeline without anyone lifting a finger."</p>
+    <div class="testimonial-slide" id="slide-1">
+      <p class="testimonial-quote">"The automation system Faith built saved our team 20+ hours a week. Leads come in, get qualified, and land in the right pipeline — without anyone lifting a finger."</p>
       <p class="testimonial-author">Coaching Business Owner</p>
       <p class="testimonial-role">Service Business, United States</p>
     </div>
-    <div class="testimonial-slide">
+    <div class="testimonial-slide" id="slide-2">
       <p class="testimonial-quote">"I came in with a messy spreadsheet and left with a full CRM. Faith understood exactly what we needed and built something way beyond what we expected."</p>
       <p class="testimonial-author">Financial Services Client</p>
       <p class="testimonial-role">Lending Company, United States</p>
     </div>
+    <div class="testimonial-slide" id="slide-3">
+      <p class="testimonial-quote">"Faith built our entire email routing system in days. Every department now gets exactly what they need automatically. No more forwarding emails manually."</p>
+      <p class="testimonial-author">Operations Manager</p>
+      <p class="testimonial-role">Retail Company, Nigeria</p>
+    </div>
+    <div class="testimonial-slide" id="slide-4">
+      <p class="testimonial-quote">"We went from manually tracking leads in WhatsApp to a fully automated pipeline. Faith delivered exactly what he promised and more."</p>
+      <p class="testimonial-author">Agency Owner</p>
+      <p class="testimonial-role">Recruiting Agency, United Kingdom</p>
+    </div>
   </div>
   <div class="testimonial-nav">
     <button class="t-btn" id="tPrev">&#8592;</button>
-    <div class="t-dots">
-      <div class="t-dot active" data-index="0"></div>
-      <div class="t-dot" data-index="1"></div>
-      <div class="t-dot" data-index="2"></div>
+    <div class="t-dots" id="tDots">
+      <div class="t-dot" data-i="0"></div>
+      <div class="t-dot" data-i="1"></div>
+      <div class="t-dot" data-i="2"></div>
+      <div class="t-dot" data-i="3"></div>
+      <div class="t-dot" data-i="4"></div>
     </div>
     <button class="t-btn" id="tNext">&#8594;</button>
   </div>
@@ -1565,10 +1560,7 @@
           <div class="channel-icon">🔗</div>
           Hire on Upwork — Faith E.
         </a>
-        <a href="/cdn-cgi/l/email-protection#b1d9d4dddddef1d7d0d8c5d9d49fd5d4c7" class="channel">
-          <div class="channel-icon">✉️</div>
-          <span class="__cf_email__" data-cfemail="9af2fff6f6f5dafcfbf3eef2ffb4feffec">[email&#160;protected]</span>
-        </a>
+        <a href="mailto:hello@faithe.dev" class="channel"><div class="channel-icon">✉️</div>hello@faithe.dev</a>
         <a href="#" class="channel">
           <div class="channel-icon">▶</div>
           YouTube — Automation & AI Content
@@ -1607,7 +1599,7 @@
   <div class="footer-copy">© 2025 Faith Elusogbon. All workflows reserved.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -1656,39 +1648,14 @@
 
   reveals.forEach(el => observer.observe(el));
 
-  // Fallback: reveal everything after 1.5s in case observer misses anything
+  // Fallback: reveal everything after 1.5s
   setTimeout(() => {
     reveals.forEach(el => el.classList.add('visible'));
   }, 1500);
 
-  // Testimonial Slideshow
-  (function() {
-    var current = 0;
-    var slides = document.querySelectorAll('.testimonial-slide');
-    var dots = document.querySelectorAll('.t-dot');
-    var total = slides.length;
+  // ── TESTIMONIAL SLIDESHOW ──
 
-    if (!total) return;
-
-    function goTo(n) {
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = ((n % total) + total) % total;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
-
-    document.getElementById('tPrev').addEventListener('click', function() { goTo(current - 1); });
-    document.getElementById('tNext').addEventListener('click', function() { goTo(current + 1); });
-
-    dots.forEach(function(dot) {
-      dot.addEventListener('click', function() {
-        goTo(parseInt(this.getAttribute('data-index')));
-      });
-    });
-
-    setInterval(function() { goTo(current + 1); }, 5000);
-  })();
+  
 
   // Photo upload
   const photoInput = document.getElementById('photoUploadInput');
@@ -1701,4 +1668,39 @@
     const reader = new FileReader();
     reader.onload = (ev) => {
       photoPlaceholder.style.display = 'none';
-      const img = docu
+      const img = document.createElement('img');
+      img.src = ev.target.result;
+      img.className = 'hero-photo';
+      img.alt = 'Faith Elusogbon';
+      photoWrap.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // ── TESTIMONIAL SLIDESHOW ──
+  var tSlides = document.querySelectorAll('.testimonial-slide');
+  var tDots   = document.querySelectorAll('#tDots .t-dot');
+  var tPrevBtn = document.getElementById('tPrev');
+  var tNextBtn = document.getElementById('tNext');
+  var tCur = 0;
+
+  function tShow(n) {
+    tCur = ((n % tSlides.length) + tSlides.length) % tSlides.length;
+    for (var i = 0; i < tSlides.length; i++) {
+      tSlides[i].style.display = (i === tCur) ? 'block' : 'none';
+      if (tDots[i]) tDots[i].classList.toggle('active', i === tCur);
+    }
+  }
+
+  // init first slide
+  if (tSlides.length > 0) {
+    tShow(0);
+    if (tPrevBtn) tPrevBtn.addEventListener('click', function() { tShow(tCur - 1); });
+    if (tNextBtn) tNextBtn.addEventListener('click', function() { tShow(tCur + 1); });
+    tDots.forEach(function(d, i) { d.addEventListener('click', function() { tShow(i); }); });
+    setInterval(function() { tShow(tCur + 1); }, 5000);
+  }
+
+</script>
+</body>
+</html>
