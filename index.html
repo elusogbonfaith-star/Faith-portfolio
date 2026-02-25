@@ -1555,6 +1555,9 @@
       <span class="section-tag">Get In Touch</span>
       <h2 class="section-title">Ready to<br>Automate?</h2>
       <p class="contact-subtext">Whether you need a full CRM build, a complex AI agent, or just want to untangle a messy workflow — let's talk about what's possible.</p>
+      <a href="https://cal.com/faith.e" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;text-decoration:none;">
+        📅 &nbsp;Book a Free Strategy Call
+      </a>
       <div class="contact-channels">
         <a href="https://upwork.com" class="channel" target="_blank">
           <div class="channel-icon">🔗</div>
@@ -1599,7 +1602,7 @@
   <div class="footer-copy">© 2025 Faith Elusogbon. All workflows reserved.</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -1654,52 +1657,34 @@
   }, 1500);
 
   // ── TESTIMONIAL SLIDESHOW ──
+  (function() {
+    var slides = [
+      document.getElementById('slide-0'),
+      document.getElementById('slide-1'),
+      document.getElementById('slide-2'),
+      document.getElementById('slide-3'),
+      document.getElementById('slide-4')
+    ];
+    var dots = document.querySelectorAll('#tDots .t-dot');
+    var cur = 0;
 
-  
-
-  // Photo upload
-  const photoInput = document.getElementById('photoUploadInput');
-  const photoPlaceholder = document.getElementById('photoPlaceholder');
-  const photoWrap = document.getElementById('photoWrap');
-
-  photoInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      photoPlaceholder.style.display = 'none';
-      const img = document.createElement('img');
-      img.src = ev.target.result;
-      img.className = 'hero-photo';
-      img.alt = 'Faith Elusogbon';
-      photoWrap.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-  });
-
-  // ── TESTIMONIAL SLIDESHOW ──
-  var tSlides = document.querySelectorAll('.testimonial-slide');
-  var tDots   = document.querySelectorAll('#tDots .t-dot');
-  var tPrevBtn = document.getElementById('tPrev');
-  var tNextBtn = document.getElementById('tNext');
-  var tCur = 0;
-
-  function tShow(n) {
-    tCur = ((n % tSlides.length) + tSlides.length) % tSlides.length;
-    for (var i = 0; i < tSlides.length; i++) {
-      tSlides[i].style.display = (i === tCur) ? 'block' : 'none';
-      if (tDots[i]) tDots[i].classList.toggle('active', i === tCur);
+    function show(n) {
+      cur = ((n % 5) + 5) % 5;
+      for (var i = 0; i < 5; i++) {
+        if (slides[i]) slides[i].style.display = (i === cur) ? 'block' : 'none';
+        if (dots[i]) dots[i].classList.toggle('active', i === cur);
+      }
     }
-  }
 
-  // init first slide
-  if (tSlides.length > 0) {
-    tShow(0);
-    if (tPrevBtn) tPrevBtn.addEventListener('click', function() { tShow(tCur - 1); });
-    if (tNextBtn) tNextBtn.addEventListener('click', function() { tShow(tCur + 1); });
-    tDots.forEach(function(d, i) { d.addEventListener('click', function() { tShow(i); }); });
-    setInterval(function() { tShow(tCur + 1); }, 5000);
-  }
+    show(0);
+
+    var prev = document.getElementById('tPrev');
+    var next = document.getElementById('tNext');
+    if (prev) prev.onclick = function() { show(cur - 1); };
+    if (next) next.onclick = function() { show(cur + 1); };
+    dots.forEach(function(d, i) { d.onclick = function() { show(i); }; });
+    setInterval(function() { show(cur + 1); }, 5000);
+  })();
 
 </script>
 </body>
