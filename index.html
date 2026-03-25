@@ -51,10 +51,10 @@
   .orb-label p { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(245,240,232,0.55); margin-top: 4px; }
   @keyframes orbFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+
   .hero-scroll span { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mist); }
-  .scroll-line { width: 1px; height: 48px; background: linear-gradient(var(--gold), transparent); animation: scrollLine 2s ease-in-out infinite; }
-  @keyframes scrollLine { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+ 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 18px 60px; background: rgba(10,10,15,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(201,168,76,0.1); }
   .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.1em; color: var(--cream); text-decoration: none; }
   .nav-logo span { color: var(--gold); }
@@ -428,7 +428,6 @@
   @media (max-width: 900px) {
     nav { padding: 20px 24px; }
     .nav-links { display: none; }
-    .hero-scroll { display: none !important; }
     .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 100px; }
     .hero-right { display: none; }
     .hero-left { padding: 40px 24px 60px; }
@@ -488,7 +487,6 @@
     .step-caption { font-size: 10px; padding: 8px 12px; }
 
     /* Hero scroll hidden on mobile */
-    .hero-scroll { display: none !important; }
   }
 </style>
 </head>
@@ -527,7 +525,7 @@
       </div>
     </div>
   </div>
-  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+  </div>
 </section>
 <div class="ticker">
   <div class="ticker-track">
@@ -676,15 +674,7 @@
         <a href="mailto:elusogbonfaith@gmail.com" class="channel"><div class="channel-icon">✉️</div>elusogbonfaith@gmail.com</a>
       </div>
     </div>
-    <div class="contact-form">
-      <div class="form-group"><input type="text" placeholder="Your Name"></div>
-      <div class="form-group"><input type="email" placeholder="Email Address"></div>
-      <div class="form-group">
-        <select><option value="" disabled selected>Project Type</option><option>AI Agent Development</option><option>CRM Build</option><option>Lead Gen Automation</option><option>Business Process Automation</option><option>API Integration</option><option>Other</option></select>
-      </div>
-      <div class="form-group"><textarea rows="5" placeholder="Tell me about your project…"></textarea></div>
-      <button class="form-submit">Send Message →</button>
-    </div>
+    
   </div>
 </section>
 <footer>
@@ -700,7 +690,7 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const projects = {
     'royal-palm': {
       industry: 'Vehicle Rental',
