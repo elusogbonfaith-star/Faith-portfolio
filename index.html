@@ -544,6 +544,58 @@
     .hero-name { font-size: 15vw !important; }
     .stat-item { min-width: 100%; }
   }
+
+  /* ── HERO FADE-IN ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(-24px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .hero-anim-eyebrow {
+    opacity: 0;
+    animation: slideRight 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
+  }
+  .hero-anim-photo {
+    opacity: 0;
+    animation: fadeIn 0.8s ease 0.25s forwards;
+  }
+  .hero-anim-name {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s forwards;
+  }
+  .hero-anim-tagline {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.55s forwards;
+  }
+  .hero-anim-ctas {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.75s forwards;
+  }
+  .hero-anim-orb {
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.4s forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-anim-eyebrow,
+    .hero-anim-photo,
+    .hero-anim-name,
+    .hero-anim-tagline,
+    .hero-anim-ctas,
+    .hero-anim-orb {
+      opacity: 1 !important;
+      animation: none !important;
+      transform: none !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -565,15 +617,15 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">AI Agent &amp; CRM Specialist</p>
+    <p class="hero-eyebrow hero-anim-eyebrow">AI Agent &amp; CRM Specialist</p>
     <div class="hero-name-row">
-      <div class="hero-photo-wrap">
+      <div class="hero-photo-wrap hero-anim-photo">
         <img src="https://raw.githubusercontent.com/elusogbonfaith-star/Faith-portfolio/main/faith%20pp.jpg" class="hero-photo" alt="Faith Elusogbon">
       </div>
-      <h1 class="hero-name">Faith<span>Elusogbon</span></h1>
+      <h1 class="hero-name hero-anim-name">Faith<span>Elusogbon</span></h1>
     </div>
-    <p class="hero-tagline">Building intelligent workflows that scale your business — so you can focus on what matters.</p>
-    <div class="hero-ctas">
+    <p class="hero-tagline hero-anim-tagline">Building intelligent workflows that scale your business — so you can focus on what matters.</p>
+    <div class="hero-ctas hero-anim-ctas">
       <a href="#work" class="btn-primary">View Portfolio</a>
       <a href="#contact" class="btn-ghost">Let's Talk</a>
     </div>
@@ -581,7 +633,7 @@
   <div class="hero-right">
     <div class="hero-visual">
       <div class="circuit-grid"></div>
-      <div class="hero-orb">
+      <div class="hero-orb hero-anim-orb">
         <div class="orb-label"><span>AI</span><p>Powered</p></div>
       </div>
     </div>
