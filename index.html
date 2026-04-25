@@ -775,7 +775,7 @@
 <!-- TESTIMONIAL -->
 <div class="testimonial-section">
   <div class="testimonial-slider">
-    <div class="testimonial-slide active" id="slide-0"><p class="testimonial-quote">"Faith didn't just build us a CRM — she built us a growth engine. Our lead response time went from two days to under two minutes."</p><p class="testimonial-author">Real Estate Client</p><p class="testimonial-role">Property Management, Australia</p></div>
+    <div class="testimonial-slide active" id="slide-0" style="display:block;"><p class="testimonial-quote">"Faith didn't just build us a CRM — she built us a growth engine. Our lead response time went from two days to under two minutes."</p><p class="testimonial-author">Real Estate Client</p><p class="testimonial-role">Property Management, Australia</p></div>
     <div class="testimonial-slide" id="slide-1"><p class="testimonial-quote">"The automation system Faith built saved our team 20+ hours a week. Leads come in, get qualified, and land in the right pipeline — without anyone lifting a finger."</p><p class="testimonial-author">Coaching Business Owner</p><p class="testimonial-role">Service Business, United States</p></div>
     <div class="testimonial-slide" id="slide-2"><p class="testimonial-quote">"I came in with a messy spreadsheet and left with a full CRM. Faith understood exactly what we needed and built something way beyond what we expected."</p><p class="testimonial-author">Financial Services Client</p><p class="testimonial-role">Lending Company, United States</p></div>
     <div class="testimonial-slide" id="slide-3"><p class="testimonial-quote">"Faith built our entire email routing system in days. Every department now gets exactly what they need automatically. No more forwarding emails manually."</p><p class="testimonial-author">Operations Manager</p><p class="testimonial-role">Retail Company, Nigeria</p></div>
@@ -849,26 +849,41 @@
 <script>
 // ── TESTIMONIAL ──
 (function() {
-  var slides = [
-    document.getElementById('slide-0'),
-    document.getElementById('slide-1'),
-    document.getElementById('slide-2'),
-    document.getElementById('slide-3'),
-    document.getElementById('slide-4')
-  ];
-  var dots = document.querySelectorAll('#tDots .t-dot');
   var cur = 0;
+  var total = 5;
+
   function show(n) {
-    cur = ((n % 5) + 5) % 5;
-    for (var i = 0; i < 5; i++) {
-      if (slides[i]) slides[i].style.cssText = (i === cur) ? 'display:block!important' : 'display:none!important';
-      if (dots[i]) dots[i].classList.toggle('active', i === cur);
+    cur = ((n % total) + total) % total;
+    for (var i = 0; i < total; i++) {
+      var slide = document.getElementById('slide-' + i);
+      var dot = document.querySelector('#tDots [data-i="' + i + '"]');
+      if (slide) {
+        if (i === cur) {
+          slide.style.display = 'block';
+          slide.classList.add('active');
+        } else {
+          slide.style.display = 'none';
+          slide.classList.remove('active');
+        }
+      }
+      if (dot) {
+        if (i === cur) dot.classList.add('active');
+        else dot.classList.remove('active');
+      }
     }
   }
+
+  // Init — show first slide immediately
   show(0);
-  document.getElementById('tPrev').onclick = function() { show(cur - 1); };
-  document.getElementById('tNext').onclick = function() { show(cur + 1); };
+
+  var prev = document.getElementById('tPrev');
+  var next = document.getElementById('tNext');
+  if (prev) prev.onclick = function() { show(cur - 1); };
+  if (next) next.onclick = function() { show(cur + 1); };
+
+  var dots = document.querySelectorAll('#tDots .t-dot');
   dots.forEach(function(d, i) { d.onclick = function() { show(i); }; });
+
   setInterval(function() { show(cur + 1); }, 5000);
 })();
 </script>
