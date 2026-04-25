@@ -821,7 +821,8 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+window.addEventListener("load", function() {
   // Cursor
   (function() {
     var cursor = document.getElementById('cursor');
@@ -864,7 +865,7 @@
   })();
 
   // Modal
-  const projects = {
+  var projects = {
     'royal-palm': {
       industry: 'Vehicle Rental',
       title: 'Royal Palm Car Rentals',
@@ -1024,4 +1025,14 @@
   }
   function closeModal() {
     document.getElementById('modalOverlay').classList.remove('open');
-    document.body.styl
+    document.body.style.overflow = '';
+  }
+  function closeModalOnBg(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+}); // end window.load
+</script>
+</body>
+</html>
