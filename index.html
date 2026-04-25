@@ -365,9 +365,10 @@
   .testimonial-role { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(10,10,15,0.55); margin-top: 4px; }
   .testimonial-nav { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 48px; }
   .t-btn {
-    width: 44px; height: 44px; border: 1px solid rgba(10,10,15,0.25);
-    background: transparent; color: var(--ink); font-size: 18px;
+    width: 44px; height: 44px; border: 2px solid rgba(10,10,15,0.4);
+    background: rgba(10,10,15,0.2); color: var(--ink); font-size: 18px;
     cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+    border-radius: 4px; font-weight: 700; line-height: 1;
   }
   .t-btn:hover { background: var(--ink); color: var(--gold); border-color: var(--ink); }
   .t-dots { display: flex; gap: 10px; align-items: center; }
@@ -487,6 +488,9 @@
   .step-caption { font-size: 11px; color: var(--gold); letter-spacing: 0.06em; padding: 10px 14px; border-top: 1px solid rgba(201,168,76,0.15); background: rgba(201,168,76,0.03); line-height: 1.5; }
 
   /* ── MOBILE ── */
+  @media (max-width: 900px), (hover: none), (pointer: coarse) {
+    #cursor, #cursorRing { display: none !important; }
+  }
   @media (max-width: 900px) {
     nav { padding: 20px 24px; }
     .nav-links { display: none; }
@@ -519,7 +523,9 @@
     .process-step { padding: 36px 28px; }
     .testimonial-section { padding: 60px 24px; }
     .testimonial-quote { font-size: 22px !important; }
-    .t-btn { width: 36px; height: 36px; font-size: 14px; }
+    .t-btn { display: none; }
+    .testimonial-nav { margin-top: 32px; }
+    .testimonial-section { padding: 60px 24px 48px; }
     .contact-section { padding: 64px 24px; }
     .contact-subtext { font-size: 14px; margin-bottom: 32px; }
     footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
@@ -621,6 +627,144 @@
     color: var(--cream);
     font-weight: 600;
   }
+
+  /* ── ABOUT SECTION ── */
+  .about-stat-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--card);
+    border: 1px solid rgba(201,168,76,0.1);
+    padding: 20px 24px;
+    transition: border-color 0.3s;
+  }
+  .about-stat-card:hover { border-color: rgba(201,168,76,0.35); }
+  .about-stat-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .about-stat-title {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .about-stat-desc {
+    font-size: 14px;
+    color: var(--mist);
+    line-height: 1.6;
+  }
+
+  /* ── WORKFLOW VISUAL ── */
+  .hero-workflow-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+    position: relative;
+    z-index: 2;
+  }
+  .wv-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+  .wv-nodes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 260px;
+  }
+  .wv-node {
+    width: 100%;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid rgba(201,168,76,0.25);
+    background: rgba(201,168,76,0.04);
+    transition: all 0.3s;
+    animation: wfPulse 3s ease-in-out infinite;
+  }
+  .wv-node:nth-child(1) { animation-delay: 0s; border-left: 3px solid #e85d4a; }
+  .wv-node:nth-child(3) { animation-delay: 0.6s; border-left: 3px solid #c9a84c; }
+  .wv-node:nth-child(5) { animation-delay: 1.2s; border-left: 3px solid #4a9eda; }
+  .wv-node:nth-child(7) { animation-delay: 1.8s; border-left: 3px solid #5cc85a; }
+  .wv-node-icon { font-size: 18px; flex-shrink: 0; }
+  .wv-node-name { font-size: 13px; color: var(--cream); font-weight: 400; letter-spacing: 0.03em; }
+  .wv-connector {
+    width: 1px;
+    height: 20px;
+    background: linear-gradient(var(--gold), rgba(201,168,76,0.2));
+    position: relative;
+  }
+  .wv-connector::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: connDrop 2s ease-in-out infinite;
+  }
+  @keyframes connDrop {
+    0% { opacity: 0; top: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; top: 100%; }
+  }
+  .wv-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--mist);
+    letter-spacing: 0.08em;
+  }
+  .wv-dot {
+    width: 8px; height: 8px;
+    background: #5cc85a;
+    border-radius: 50%;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Mobile about */
+  @media (max-width: 900px) {
+    #about .section > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+    #about .section { padding: 60px 24px !important; }
+  }
+
+  .service-icon--emoji {
+    width: 52px; height: 52px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    margin-bottom: 28px;
+  }
+
+  .hero-value-prop {
+    font-size: clamp(18px, 2.2vw, 26px);
+    line-height: 1.6;
+    color: var(--mist);
+    max-width: 480px;
+    margin-top: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  .hero-value-prop strong {
+    color: var(--gold);
+    font-weight: 500;
+  }
 </style>
 </head>
 <body>
@@ -632,6 +776,7 @@
 <nav>
   <a href="#" class="nav-logo">Faith <span>E.</span></a>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#process">Process</a></li>
@@ -649,7 +794,8 @@
       </div>
       <h1 class="hero-name hero-anim-name">Faith<span>Elusogbon</span></h1>
     </div>
-    <p class="hero-tagline hero-anim-tagline">Building intelligent workflows that scale your business — so you can focus on what matters.</p>
+    <div class="koka-badge"><span class="koka-badge-icon">🏆</span><span class="koka-badge-text"><strong>#1 Student</strong> &nbsp;&middot;&nbsp; n8n, Make &amp; GoHighLevel &nbsp;&middot;&nbsp; KOKA Academy</span></div>
+    <p class="hero-value-prop hero-anim-tagline" style="animation-delay:0.5s;">I Help <strong>Real Estate Companies</strong>, <strong>Law Firms</strong> &amp; <strong>SMEs</strong> automate operations, eliminate manual work, and scale faster with AI Systems &amp; CRM Solutions.</p>
     <div class="hero-ctas hero-anim-ctas">
       <a href="#work" class="btn-primary">View Portfolio</a>
       <a href="#contact" class="btn-ghost">Let's Talk</a>
@@ -658,8 +804,32 @@
   <div class="hero-right">
     <div class="hero-visual">
       <div class="circuit-grid"></div>
-      <div class="hero-orb hero-anim-orb">
-        <div class="orb-label"><span>AI</span><p>Powered</p></div>
+      <div class="hero-workflow-visual hero-anim-orb">
+        <div class="wv-label">LIVE WORKFLOW</div>
+        <div class="wv-nodes">
+          <div class="wv-node wv-node--trigger">
+            <div class="wv-node-icon">⚡</div>
+            <div class="wv-node-name">Webhook Trigger</div>
+          </div>
+          <div class="wv-connector"></div>
+          <div class="wv-node wv-node--process">
+            <div class="wv-node-icon">🤖</div>
+            <div class="wv-node-name">AI Agent</div>
+          </div>
+          <div class="wv-connector"></div>
+          <div class="wv-node wv-node--data">
+            <div class="wv-node-icon">🗄️</div>
+            <div class="wv-node-name">Airtable CRM</div>
+          </div>
+          <div class="wv-connector"></div>
+          <div class="wv-node wv-node--output">
+            <div class="wv-node-icon">📧</div>
+            <div class="wv-node-name">Gmail Send</div>
+          </div>
+        </div>
+        <div class="wv-status">
+          <span class="wv-dot"></span> Running · 247 executions today
+        </div>
       </div>
     </div>
   </div>
@@ -679,20 +849,71 @@
   <div class="stat-item"><span class="stat-number">12+</span><span class="stat-label">Industries Served</span></div>
 </div>
 
+<!-- ABOUT -->
+<section id="about" style="background:var(--ink); border-bottom: 1px solid rgba(201,168,76,0.1);">
+  <div class="section" style="padding: 80px 60px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+      <div>
+        <span class="section-tag">Who I Am</span>
+        <h2 class="section-title" style="font-size:clamp(40px,5vw,72px); margin-bottom:28px;">Faith<br>Elusogbon</h2>
+        <p style="font-size:16px; line-height:1.85; color:var(--mist); margin-bottom:20px;">
+          I got into automation because I kept seeing businesses — good businesses — drowning in repetitive manual work that software could handle in seconds.
+        </p>
+        <p style="font-size:16px; line-height:1.85; color:var(--mist); margin-bottom:20px;">
+          I build with n8n, Airtable, GoHighLevel, Make, Zapier, Softr, and ElevenLabs. My projects have ranged from AI voice agents for restaurants to full CRM systems for real estate firms — each one built to solve a specific problem, not just to look impressive.
+        </p>
+        <p style="font-size:16px; line-height:1.85; color:var(--mist);">
+          I was the <strong style="color:var(--gold);">#1 student</strong> across n8n, Make, and GoHighLevel at KOKA Academy. I hold a BSc in Estate Management from Obafemi Awolowo University — which taught me how to think about systems long before I started building them in code.
+        </p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div class="about-stat-card">
+          <span class="about-stat-icon">🛠️</span>
+          <div>
+            <div class="about-stat-title">Tools I Work With Daily</div>
+            <div class="about-stat-desc">n8n · Airtable · GoHighLevel · Make · Zapier · Softr · ElevenLabs · OpenAI · Supabase</div>
+          </div>
+        </div>
+        <div class="about-stat-card">
+          <span class="about-stat-icon">📍</span>
+          <div>
+            <div class="about-stat-title">Based In</div>
+            <div class="about-stat-desc">Lagos, Nigeria — working with clients globally</div>
+          </div>
+        </div>
+        <div class="about-stat-card">
+          <span class="about-stat-icon">🎓</span>
+          <div>
+            <div class="about-stat-title">Education</div>
+            <div class="about-stat-desc">BSc Estate Management — Obafemi Awolowo University<br>AI Automation & CRM — KOKA Academy<br>n8n Automation — Udemy</div>
+          </div>
+        </div>
+        <div class="about-stat-card">
+          <span class="about-stat-icon">⚡</span>
+          <div>
+            <div class="about-stat-title">Currently Open To</div>
+            <div class="about-stat-desc">Full-time roles · Freelance contracts · Remote work globally</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section id="services" style="background:var(--ink);">
   <div class="section">
     <div class="section-header">
-      <div><span class="section-tag">What I Do</span><h2 class="section-title">Core<br>Services</h2></div>
+      <div><span class="section-tag">What I Build</span><h2 class="section-title">Core<br>Services</h2></div>
       <span class="section-number">01</span>
     </div>
     <div class="services-grid">
-      <div class="service-card"><div class="service-num">01</div><div class="service-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#c9a84c" stroke-width="1.5"/><rect x="28" y="4" width="16" height="16" rx="3" stroke="#c9a84c" stroke-width="1.5"/><rect x="16" y="28" width="16" height="16" rx="3" stroke="#c9a84c" stroke-width="1.5"/><path d="M12 20v4a8 8 0 008 8M36 20v4a8 8 0 01-8 8" stroke="#c9a84c" stroke-width="1.5"/></svg></div><h3 class="service-name">AI Agent Development</h3><p class="service-desc">Custom AI agents that handle repetitive tasks autonomously — from lead qualification to data enrichment and client onboarding sequences.</p><div class="service-tools"><span class="tool-tag">n8n</span><span class="tool-tag">Make</span><span class="tool-tag">LLM APIs</span></div></div>
-      <div class="service-card"><div class="service-num">02</div><div class="service-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#c9a84c" stroke-width="1.5"/><path d="M12 24h24M24 12c-4 4-4 20 0 24M24 12c4 4 4 20 0 24" stroke="#c9a84c" stroke-width="1.5"/></svg></div><h3 class="service-name">CRM Architecture</h3><p class="service-desc">Full-scale CRM builds with lead scoring, pipeline management, multi-table relational databases, and automated follow-up systems.</p><div class="service-tools"><span class="tool-tag">Airtable</span><span class="tool-tag">Monday</span><span class="tool-tag">GHL</span></div></div>
-      <div class="service-card"><div class="service-num">03</div><div class="service-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M8 36V20l16-12 16 12v16a4 4 0 01-4 4H12a4 4 0 01-4-4z" stroke="#c9a84c" stroke-width="1.5"/><rect x="18" y="28" width="12" height="12" stroke="#c9a84c" stroke-width="1.5"/></svg></div><h3 class="service-name">Lead Gen Automation</h3><p class="service-desc">End-to-end lead generation pipelines connecting web forms, email sequences, CRM routing, and calendar booking into one seamless flow.</p><div class="service-tools"><span class="tool-tag">Zapier</span><span class="tool-tag">Webhooks</span><span class="tool-tag">APIs</span></div></div>
-      <div class="service-card"><div class="service-num">04</div><div class="service-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="4" y="12" width="40" height="28" rx="3" stroke="#c9a84c" stroke-width="1.5"/><path d="M4 20h40M16 12V8M32 12V8" stroke="#c9a84c" stroke-width="1.5"/></svg></div><h3 class="service-name">Business Process Design</h3><p class="service-desc">Map, optimize, and automate your core business operations — onboarding, invoicing, reporting, and team communication workflows.</p><div class="service-tools"><span class="tool-tag">n8n</span><span class="tool-tag">Airtable</span><span class="tool-tag">Notion</span></div></div>
-      <div class="service-card"><div class="service-num">05</div><div class="service-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 4l6 12 13 2-9.5 9 2.5 13L24 34l-12 6 2.5-13L5 18l13-2 6-12z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round"/></svg></div><h3 class="service-name">Multi-Client Systems</h3><p class="service-desc">Scalable automation infrastructure built to serve multiple clients simultaneously — templated, branded, and easily replicated for growth.</p><div class="service-tools"><span class="tool-tag">Airtable</span><span class="tool-tag">Supabase</span><span class="tool-tag">n8n</span></div></div>
-      <div class="service-card"><div class="service-num">06</div><div class="service-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M8 8h32v8H8zM8 24h20v8H8zM8 40h32v4H8z" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round"/></svg></div><h3 class="service-name">Integration &amp; API Work</h3><p class="service-desc">Connect any platform to any other — custom API integrations, webhook endpoints, data sync pipelines, and real-time notification systems.</p><div class="service-tools"><span class="tool-tag">REST APIs</span><span class="tool-tag">Webhooks</span><span class="tool-tag">OAuth</span></div></div>
+      <div class="service-card"><div class="service-num">01</div><div class="service-icon service-icon--emoji">🤖</div><h3 class="service-name">AI Agent Development</h3><p class="service-desc">Custom AI agents that handle repetitive tasks autonomously — from lead qualification to data enrichment and client onboarding sequences.</p><div class="service-tools"><span class="tool-tag">n8n</span><span class="tool-tag">Make</span><span class="tool-tag">LLM APIs</span></div></div>
+      <div class="service-card"><div class="service-num">02</div><div class="service-icon service-icon--emoji">🗂️</div><h3 class="service-name">CRM Architecture</h3><p class="service-desc">Full-scale CRM builds with lead scoring, pipeline management, multi-table relational databases, and automated follow-up systems.</p><div class="service-tools"><span class="tool-tag">Airtable</span><span class="tool-tag">Monday</span><span class="tool-tag">GHL</span></div></div>
+      <div class="service-card"><div class="service-num">03</div><div class="service-icon service-icon--emoji">🎯</div><h3 class="service-name">Lead Gen Automation</h3><p class="service-desc">End-to-end lead generation pipelines connecting web forms, email sequences, CRM routing, and calendar booking into one seamless flow.</p><div class="service-tools"><span class="tool-tag">Zapier</span><span class="tool-tag">Webhooks</span><span class="tool-tag">APIs</span></div></div>
+      <div class="service-card"><div class="service-num">04</div><div class="service-icon service-icon--emoji">⚙️</div><h3 class="service-name">Business Process Design</h3><p class="service-desc">Map, optimize, and automate your core business operations — onboarding, invoicing, reporting, and team communication workflows.</p><div class="service-tools"><span class="tool-tag">n8n</span><span class="tool-tag">Airtable</span><span class="tool-tag">Notion</span></div></div>
+      <div class="service-card"><div class="service-num">05</div><div class="service-icon service-icon--emoji">📡</div><h3 class="service-name">Multi-Client Systems</h3><p class="service-desc">Scalable automation infrastructure built to serve multiple clients simultaneously — templated, branded, and easily replicated for growth.</p><div class="service-tools"><span class="tool-tag">Airtable</span><span class="tool-tag">Supabase</span><span class="tool-tag">n8n</span></div></div>
+      <div class="service-card"><div class="service-num">06</div><div class="service-icon service-icon--emoji">🔗</div><h3 class="service-name">Integration &amp; API Work</h3><p class="service-desc">Connect any platform to any other — custom API integrations, webhook endpoints, data sync pipelines, and real-time notification systems.</p><div class="service-tools"><span class="tool-tag">REST APIs</span><span class="tool-tag">Webhooks</span><span class="tool-tag">OAuth</span></div></div>
     </div>
   </div>
 </section>
@@ -701,7 +922,7 @@
 <section id="work" class="projects-section">
   <div class="projects-inner">
     <div class="section-header">
-      <div><span class="section-tag">Selected Work</span><h2 class="section-title">Portfolio</h2></div>
+      <div><span class="section-tag">Real Builds</span><h2 class="section-title">My Work</h2></div>
       <span class="section-number">02</span>
     </div>
     <div class="projects-grid">
@@ -777,7 +998,7 @@
         <span class="card-cta">View Case Study →</span>
       </div>
 
-    <
+
   </div>
 </section>
 
@@ -785,7 +1006,7 @@
 <section id="process" style="background:var(--ink);">
   <div class="process-section">
     <div class="section-header">
-      <div><span class="section-tag">How I Work</span><h2 class="section-title">The Process</h2></div>
+      <div><span class="section-tag">How It Goes</span><h2 class="section-title">Working<br>With Me</h2></div>
       <span class="section-number">03</span>
     </div>
     <div class="process-steps">
@@ -823,8 +1044,8 @@
 <section id="contact" style="background:var(--panel);">
   <div class="contact-section">
     <span class="section-tag">Get In Touch</span>
-    <h2 class="section-title" style="margin-bottom:20px;">Ready to<br>Automate?</h2>
-    <p class="contact-subtext">Whether you need a full CRM build, a complex AI agent, or just want to untangle a messy workflow — let's talk about what's possible.</p>
+    <h2 class="section-title" style="margin-bottom:20px;">Got a<br>Problem?</h2>
+    <p class="contact-subtext">If there's a repetitive task eating your time, a workflow that keeps breaking, or a system you wish existed — send me a message. I've probably built something like it before.</p>
     <a href="https://cal.com/faith.e" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;text-decoration:none;">📅 &nbsp;Book a Free Strategy Call</a>
     <div class="contact-channels">
       <a href="/cdn-cgi/l/email-protection#5f3a332a2c30383d3031393e362b371f38323e3633713c3032" class="channel"><div class="channel-icon">✉️</div><span class="__cf_email__" data-cfemail="1d7871686e727a7f72737b7c7469755d7a707c7471337e7270">[email&#160;protected]</span></a>
