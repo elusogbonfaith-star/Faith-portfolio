@@ -78,31 +78,27 @@
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     position: relative;
     overflow: hidden;
     background: var(--ink);
-    text-align: center;
-    padding: 100px 24px 60px;
   }
   .hero-left {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding: 120px 60px 80px 80px;
     position: relative;
     z-index: 2;
-    max-width: 1100px;
-    width: 100%;
+    border-right: 1px solid rgba(201,168,76,0.1);
   }
   .hero-eyebrow {
     font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
     color: var(--gold); margin-bottom: 24px; display: block;
   }
-  .hero-name-row { display: flex; align-items: center; justify-content: center; gap: 0; }
+  .hero-name-row { display: block; }
   .hero-photo-wrap {
     flex-shrink: 0; width: 140px; height: 170px;
     position: relative; margin-bottom: 6px;
@@ -774,6 +770,39 @@
   .hero-value-prop strong {
     color: var(--gold);
     font-weight: 500;
+  }
+
+  .hero-right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 80px 80px 60px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-right-panel .hero-value-prop {
+    text-align: left;
+    font-size: clamp(20px, 2vw, 28px);
+    max-width: 100%;
+    margin-top: 0;
+    margin-bottom: 32px;
+    color: var(--cream);
+    font-style: italic;
+  }
+  .hero-right-panel .hero-value-prop strong { color: var(--gold); }
+  .hero-right-panel .koka-badge { border-radius: 0; margin-bottom: 40px; }
+  .hero-right-panel .hero-ctas { justify-content: flex-start; margin-top: 0; }
+  .hero-divider {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    margin-bottom: 32px;
+  }
+  .hero-role-tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 24px;
   }
 </style>
 </head>
