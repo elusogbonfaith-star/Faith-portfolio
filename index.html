@@ -77,23 +77,31 @@
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: relative;
     overflow: hidden;
     background: var(--ink);
+    text-align: center;
+    padding: 120px 40px 80px;
   }
   .hero-left {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 100px 60px 60px; position: relative; z-index: 2;
-    background: var(--ink); min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    width: 100%;
   }
   .hero-eyebrow {
     font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
     color: var(--gold); margin-bottom: 24px; display: block;
   }
-  .hero-name-row { display: flex; align-items: flex-end; gap: 32px; }
+  .hero-name-row { display: flex; align-items: center; justify-content: center; gap: 0; }
   .hero-photo-wrap {
     flex-shrink: 0; width: 140px; height: 170px;
     position: relative; margin-bottom: 6px;
@@ -608,11 +616,11 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.5);
-    padding: 8px 18px;
-    margin-top: 20px;
-    animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.45s both;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-top: 24px;
   }
   .koka-badge-icon { font-size: 16px; }
   .koka-badge-text {
@@ -752,14 +760,15 @@
   }
 
   .hero-value-prop {
-    font-size: clamp(18px, 2.2vw, 26px);
-    line-height: 1.6;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.65;
     color: var(--mist);
-    max-width: 480px;
-    margin-top: 14px;
+    max-width: 600px;
+    margin-top: 20px;
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
     font-style: italic;
+    text-align: center;
   }
   .hero-value-prop strong {
     color: var(--gold);
